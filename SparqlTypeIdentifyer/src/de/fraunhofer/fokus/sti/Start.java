@@ -1,8 +1,5 @@
 package de.fraunhofer.fokus.sti;
 
-import java.util.HashMap;
-
-import javax.print.attribute.HashAttributeSet;
 
 
 public class Start {

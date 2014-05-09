@@ -1,10 +1,16 @@
 package de.fraunhofer.fokus.sti;
 
 import java.util.Comparator;
-import java.util.TreeMap;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.TreeMap;
 
+/**
+ * This class creates an ordered list of rdf:type
+ * (Depends on query in Crawler class extension, e.g. CrawlerDBPedia)
+ * @author BB
+ *
+ */
 public class LabelList implements Comparator {
 
 	Crawler crawler;
@@ -60,16 +66,5 @@ public class LabelList implements Comparator {
 				.compareTo((String) o2);
 	}
 
-	// private String[] mapToOrderedStringArray(TreeMap<String, Integer> mp) {
-	// String[] keys = new String[mp.size()];
-	// String[] vals = new String[mp.size()];
-	// Iterator it = mp.entrySet().iterator();
-	//
-	// while (it.hasNext()) {
-	// Map.Entry pairs = (Map.Entry) it.next();
-	// System.out.println(pairs.getKey() + " = " + pairs.getValue());
-	// it.remove(); // avoids a ConcurrentModificationException
-	// }
-	// }
 
 }

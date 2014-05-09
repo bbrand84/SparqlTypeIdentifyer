@@ -5,31 +5,34 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
-import java.net.MalformedURLException;
 import java.net.URL;
 import java.nio.charset.Charset;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * Extend this class if you want to connect to an sparql enpoint like
+ * dbpedia.org/sparql.
+ * 
+ * @author BB
+ * 
+ */
 public abstract class Crawler {
 
 	URL url;
 
+	Crawler() {
+
+	}
+
+	/**
+	 * Overwrite this function to change the class variable "url".
+	 * See class "CrawlerDBPedia"
+	 * @param label string to look up
+	 * @return URL or null should be returned
+	 */
 	abstract URL setURL(String label);
-//	{
-//		try {
-//			url = new URL(
-//					"http://dbpedia.org/sparql?default-graph-uri=http%3A%2F%2Fdbpedia.org&query=prefix+foaf%3A++%3Chttp%3A%2F%2Fxmlns.com%2Ffoaf%2F0.1%2F%3E+%0D%0Aselect+distinct+%3Fy+where+%7B%0D%0A%3Fx+rdfs%3Alabel+%22"
-//							+ label
-//							+ "%22%40en.%0D%0A%3Fx+rdf%3Atype+%3Fy%0D%0A%7D&format=application%2Fsparql-results%2Bjson&timeout=30000&debug=on");
-//			return url;
-//		} catch (MalformedURLException e) {
-//			e.printStackTrace();
-//			return null;
-//		}
-//
-//	}
 
 	private String readAll(Reader rd) throws IOException {
 		StringBuilder sb = new StringBuilder();
@@ -52,7 +55,7 @@ public abstract class Crawler {
 			JSONObject json = new JSONObject(jsonText);
 			return json;
 		} catch (IOException ioe) {
-			//ioe.printStackTrace();
+			// ioe.printStackTrace();
 			return null;
 		} finally {
 			if (is != null)
@@ -62,7 +65,9 @@ public abstract class Crawler {
 
 	/**
 	 * Returns list of <i>rdfs:label</i> for parameter 'label'
-	 * @param entity name to return <i>rdfs:label</i> s for
+	 * 
+	 * @param entity
+	 *            name to return <i>rdfs:label</i> s for
 	 * @return list of <i>rdfs:label</i> for parameter 'label'
 	 */
 	public abstract String[] extract(String label);

@@ -12,7 +12,7 @@ import org.json.JSONObject;
 
 public class CrawlerDBPedia extends Crawler {
 
-	@Override
+
 	public String[] extract(String label) {
 		JSONObject jsonObject;
 		String[] result = {};
